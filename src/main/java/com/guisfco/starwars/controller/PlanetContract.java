@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface PlanetContract {
 
-    @ApiOperation("Inserts a new planet and returns it")
-    ResponseEntity<Planet> save(PlanetRequest request);
+    @ApiOperation("Deletes the planet that matches with the provided id")
+    ResponseEntity<Void> deleteById(String planetId);
 
     @ApiOperation("Returns all the planets")
     ResponseEntity<List<Planet>> findAll();
@@ -18,6 +18,6 @@ public interface PlanetContract {
     @ApiOperation("Returns any planet that matches with the provided id")
     ResponseEntity<Planet> findById(String planetId);
 
-    @ApiOperation("Deletes the planet that matches with the provided id")
-    ResponseEntity<Void> deleteById(String planetId);
+    @ApiOperation("Inserts a new planet and returns it")
+    ResponseEntity<Planet> save(PlanetRequest request);
 }

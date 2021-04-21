@@ -28,9 +28,10 @@ public class PlanetController implements PlanetContract {
     private final SavePlanetService savePlanetService;
 
     @Override
-    @PostMapping
-    public ResponseEntity<Planet> save(@Valid @RequestBody final PlanetRequest request) {
-        return new ResponseEntity<>(savePlanetService.save(request), HttpStatus.CREATED);
+    @DeleteMapping("/{planetId}")
+    public ResponseEntity<Void> deleteById(@PathVariable("planetId") final String planetId) {
+        deletePlanetByIdService.deleteById(planetId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
@@ -46,9 +47,8 @@ public class PlanetController implements PlanetContract {
     }
 
     @Override
-    @DeleteMapping("/{planetId}")
-    public ResponseEntity<Void> deleteById(@PathVariable("planetId") final String planetId) {
-        deletePlanetByIdService.deleteById(planetId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @PostMapping
+    public ResponseEntity<Planet> save(@Valid @RequestBody final PlanetRequest request) {
+        return new ResponseEntity<>(savePlanetService.save(request), HttpStatus.CREATED);
     }
 }
