@@ -1,7 +1,7 @@
 package com.guisfco.starwars.controller;
 
+import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.domain.request.PlanetRequest;
-import com.guisfco.starwars.entity.Planet;
 import com.guisfco.starwars.service.DeletePlanetByIdService;
 import com.guisfco.starwars.service.FindAllPlanetsService;
 import com.guisfco.starwars.service.FindPlanetByIdService;
@@ -36,19 +36,19 @@ public class PlanetController implements PlanetContract {
 
     @Override
     @GetMapping
-    public ResponseEntity<List<Planet>> findAll() {
+    public ResponseEntity<List<PlanetDto>> findAll() {
         return new ResponseEntity<>(findAllPlanetsService.findAll(), HttpStatus.OK);
     }
 
     @Override
     @GetMapping("/{planetId}")
-    public ResponseEntity<Planet> findById(@PathVariable("planetId") final String planetId) {
+    public ResponseEntity<PlanetDto> findById(@PathVariable("planetId") final String planetId) {
         return new ResponseEntity<>(findPlanetByIdService.findById(planetId), HttpStatus.OK);
     }
 
     @Override
     @PostMapping
-    public ResponseEntity<Planet> save(@Valid @RequestBody final PlanetRequest request) {
+    public ResponseEntity<PlanetDto> save(@Valid @RequestBody final PlanetRequest request) {
         return new ResponseEntity<>(savePlanetService.save(request), HttpStatus.CREATED);
     }
 }

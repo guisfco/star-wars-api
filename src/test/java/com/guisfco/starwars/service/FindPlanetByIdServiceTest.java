@@ -1,6 +1,6 @@
 package com.guisfco.starwars.service;
 
-import com.guisfco.starwars.entity.Planet;
+import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.exception.PlanetNotFoundException;
 import com.guisfco.starwars.fixture.PlanetFixture;
 import com.guisfco.starwars.repository.PlanetRepository;
@@ -36,7 +36,7 @@ class FindPlanetByIdServiceTest {
 
         when(repository.findById(planetId)).thenReturn(Optional.of(PlanetFixture.get().random().build()));
 
-        final Planet response = service.findById(planetId);
+        final PlanetDto response = service.findById(planetId);
 
         assertNotNull(response);
         verify(repository).findById(planetId);

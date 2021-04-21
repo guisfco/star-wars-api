@@ -1,8 +1,8 @@
 package com.guisfco.starwars.service;
 
-import com.guisfco.starwars.entity.Planet;
+import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.exception.PlanetNotFoundException;
-import com.guisfco.starwars.fixture.PlanetFixture;
+import com.guisfco.starwars.fixture.PlanetDtoFixture;
 import com.guisfco.starwars.repository.PlanetRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -32,14 +32,14 @@ class DeletePlanetByIdServiceTest {
     public void deleteById() {
 
         final String planetId = randomAlphanumeric(5);
-        final Planet foundPlanet = PlanetFixture.get().random().build();
+        final PlanetDto foundPlanet = PlanetDtoFixture.get().random().build();
 
         when(findPlanetByIdService.findById(planetId)).thenReturn(foundPlanet);
 
         service.deleteById(planetId);
 
         verify(findPlanetByIdService).findById(planetId);
-        verify(repository).delete(foundPlanet);
+        verify(repository).deleteById(foundPlanet.getId());
     }
 
     @Test

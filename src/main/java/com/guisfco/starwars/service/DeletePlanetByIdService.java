@@ -18,6 +18,6 @@ public class DeletePlanetByIdService {
 
         log.info("Deleting planet by id: {}.", planetId);
 
-        repository.delete(findPlanetByIdService.findById(planetId));
+        repository.deleteById(findPlanetByIdService.findById(planetId).getId());
     }
 }

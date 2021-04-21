@@ -1,6 +1,6 @@
 package com.guisfco.starwars.service;
 
-import com.guisfco.starwars.entity.Planet;
+import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.fixture.PlanetFixture;
 import com.guisfco.starwars.repository.PlanetRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -31,7 +31,7 @@ class FindAllPlanetsServiceTest {
 
         when(repository.findAll()).thenReturn(PlanetFixture.get().randomList());
 
-        final List<Planet> response = service.findAll();
+        final List<PlanetDto> response = service.findAll();
 
         assertNotNull(response);
         verify(repository).findAll();

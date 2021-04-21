@@ -1,7 +1,9 @@
 package com.guisfco.starwars.service;
 
+import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.domain.request.PlanetRequest;
 import com.guisfco.starwars.entity.Planet;
+import com.guisfco.starwars.mapper.PlanetDtoMapper;
 import com.guisfco.starwars.repository.PlanetRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +16,7 @@ public class SavePlanetService {
 
     private final PlanetRepository repository;
 
-    public Planet save(final PlanetRequest request) {
+    public PlanetDto save(final PlanetRequest request) {
 
         log.info("Inserting planet: {}.", request);
 
@@ -24,6 +26,6 @@ public class SavePlanetService {
                 .terrain(request.getTerrain())
                 .build();
 
-        return repository.save(planet);
+        return PlanetDtoMapper.apply(repository.save(planet));
     }
 }

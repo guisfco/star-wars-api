@@ -1,5 +1,6 @@
 package com.guisfco.starwars.service;
 
+import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.entity.Planet;
 import com.guisfco.starwars.fixture.PlanetFixture;
 import com.guisfco.starwars.fixture.PlanetRequestFixture;
@@ -26,14 +27,14 @@ class SavePlanetServiceTest {
     private PlanetRepository repository;
 
     @Test
-    @DisplayName("Must save a new planet entity and returns it")
+    @DisplayName("Must save a new planet entity and return it")
     public void save() {
 
         final Planet fixture = PlanetFixture.get().random().build();
 
         when(repository.save(any(Planet.class))).thenReturn(fixture);
 
-        final Planet response = service.save(PlanetRequestFixture.get().random().build());
+        final PlanetDto response = service.save(PlanetRequestFixture.get().random().build());
 
         assertNotNull(response);
         verify(repository).save(any(Planet.class));
