@@ -15,6 +15,7 @@ public class PlanetDtoMapper {
 
         return PlanetDto.builder()
                 .climate(planet.getClimate())
+                .filmsAppearances(planet.getFilmsAppearances())
                 .id(planet.getId())
                 .name(planet.getName())
                 .terrain(planet.getTerrain())

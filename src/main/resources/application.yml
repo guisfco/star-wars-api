@@ -1,3 +1,6 @@
+access:
+  getPlanets: "https://swapi.dev/api/planets/"
+
 spring:
   data:
     mongodb:
