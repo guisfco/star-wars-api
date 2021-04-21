@@ -1,0 +1,12 @@
+spring:
+  data:
+    mongodb:
+      host: ${DATABASE_HOST}
+      port: ${DATABASE_PORT}
+      database: starwars
+
+server:
+  servlet:
+    context-path: /api
+  error:
+    include-message: always
