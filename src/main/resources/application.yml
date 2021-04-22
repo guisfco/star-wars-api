@@ -4,8 +4,8 @@ access:
 spring:
   data:
     mongodb:
-      host: ${DATABASE_HOST}
-      port: ${DATABASE_PORT}
+      host: ${DATABASE_HOST:localhost}
+      port: ${DATABASE_PORT:27017}
       database: starwars
 
 server:
