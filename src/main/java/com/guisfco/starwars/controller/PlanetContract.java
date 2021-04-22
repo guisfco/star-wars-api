@@ -32,6 +32,7 @@ public interface PlanetContract {
 
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "The planet was created successfully"),
+            @ApiResponse(code = 400, message = "A required information was not provided"),
             @ApiResponse(code = 412, message = "There was an error while getting planet details")
     })
     @ApiOperation("Inserts a new planet and returns it")

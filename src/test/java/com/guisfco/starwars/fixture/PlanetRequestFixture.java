@@ -16,6 +16,21 @@ public class PlanetRequestFixture {
         return fixture;
     }
 
+    public PlanetRequestFixture climate(final String climate) {
+        fixture.setClimate(climate);
+        return this;
+    }
+
+    public PlanetRequestFixture name(final String name) {
+        fixture.setName(name);
+        return this;
+    }
+
+    public PlanetRequestFixture terrain(final String terrain) {
+        fixture.setTerrain(terrain);
+        return this;
+    }
+
     public PlanetRequestFixture random() {
 
         fixture.setClimate(randomAlphabetic(5));

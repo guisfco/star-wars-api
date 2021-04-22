@@ -39,6 +39,7 @@ public class PlanetDetailService {
         try {
             response = restTemplate.getForObject(uri, PlanetListResponse.class);
         } catch (Exception e) {
+            log.error("Could not get planet details.", e);
             throw new PlanetDetailingException();
         }
 

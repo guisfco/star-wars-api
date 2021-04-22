@@ -1,15 +1,14 @@
 package com.guisfco.starwars.controller;
 
-import com.guisfco.starwars.domain.response.ContentPageResponse;
 import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.domain.request.PlanetRequest;
+import com.guisfco.starwars.domain.response.ContentPageResponse;
 import com.guisfco.starwars.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -48,7 +47,7 @@ public class PlanetController implements PlanetContract {
 
     @Override
     @PostMapping
-    public ResponseEntity<PlanetDto> save(@Valid @RequestBody final PlanetRequest request) {
+    public ResponseEntity<PlanetDto> save(@RequestBody final PlanetRequest request) {
         return new ResponseEntity<>(savePlanetService.save(request), HttpStatus.CREATED);
     }
 

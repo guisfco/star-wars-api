@@ -6,6 +6,7 @@ import com.guisfco.starwars.domain.swapi.PlanetDetail;
 import com.guisfco.starwars.entity.Planet;
 import com.guisfco.starwars.mapper.PlanetDtoMapper;
 import com.guisfco.starwars.repository.PlanetRepository;
+import com.guisfco.starwars.validator.PlanetRequestValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,11 @@ public class SavePlanetService {
 
     private final PlanetDetailService planetDetailService;
 
+    private final PlanetRequestValidator validator;
+
     public PlanetDto save(final PlanetRequest request) {
+
+        validator.accept(request);
 
         log.info("Inserting planet: {}.", request);
 
