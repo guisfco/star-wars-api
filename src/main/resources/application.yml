@@ -13,3 +13,4 @@ server:
     context-path: /api
   error:
     include-message: always
+  port: 8080
