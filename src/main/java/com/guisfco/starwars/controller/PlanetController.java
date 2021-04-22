@@ -1,11 +1,9 @@
 package com.guisfco.starwars.controller;
 
+import com.guisfco.starwars.domain.response.ContentPageResponse;
 import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.domain.request.PlanetRequest;
-import com.guisfco.starwars.service.DeletePlanetByIdService;
-import com.guisfco.starwars.service.FindAllPlanetsService;
-import com.guisfco.starwars.service.FindPlanetByIdService;
-import com.guisfco.starwars.service.SavePlanetService;
+import com.guisfco.starwars.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +24,8 @@ public class PlanetController implements PlanetContract {
     private final FindPlanetByIdService findPlanetByIdService;
 
     private final SavePlanetService savePlanetService;
+
+    private final SearchPlanetsByTextService searchPlanetsByTextService;
 
     @Override
     @DeleteMapping("/{planetId}")
@@ -50,5 +50,14 @@ public class PlanetController implements PlanetContract {
     @PostMapping
     public ResponseEntity<PlanetDto> save(@Valid @RequestBody final PlanetRequest request) {
         return new ResponseEntity<>(savePlanetService.save(request), HttpStatus.CREATED);
+    }
+
+    @Override
+    @GetMapping("/search")
+    public ResponseEntity<ContentPageResponse<PlanetDto>> searchByText(@RequestParam(required = false) final String text,
+                                                                       @RequestParam(defaultValue = "1", required = false) final int page,
+                                                                       @RequestParam(defaultValue = "16", required = false) final int size) {
+
+        return new ResponseEntity<>(searchPlanetsByTextService.searchByText(text, page, size), HttpStatus.OK);
     }
 }

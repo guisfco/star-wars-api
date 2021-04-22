@@ -2,7 +2,7 @@ package com.guisfco.starwars.service;
 
 import com.guisfco.starwars.domain.dto.PlanetDto;
 import com.guisfco.starwars.domain.request.PlanetRequest;
-import com.guisfco.starwars.domain.swapi.response.PlanetDetail;
+import com.guisfco.starwars.domain.swapi.PlanetDetail;
 import com.guisfco.starwars.entity.Planet;
 import com.guisfco.starwars.mapper.PlanetDtoMapper;
 import com.guisfco.starwars.repository.PlanetRepository;

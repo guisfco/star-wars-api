@@ -1,6 +1,6 @@
 package com.guisfco.starwars.fixture;
 
-import com.guisfco.starwars.domain.swapi.response.PlanetDetail;
+import com.guisfco.starwars.domain.swapi.PlanetDetail;
 import com.guisfco.starwars.domain.swapi.response.PlanetListResponse;
 
 import java.util.List;
@@ -24,12 +24,7 @@ public class PlanetListResponseFixture {
 
     public PlanetListResponseFixture random() {
 
-        final List<PlanetDetail> planets = PlanetDetailFixture.get().randomList();
-
-        fixture.setCount(planets.size());
-        fixture.setNext(null);
-        fixture.setPrevious(null);
-        fixture.setResults(planets);
+        fixture.setResults(PlanetDetailFixture.get().randomList());
 
         return this;
     }

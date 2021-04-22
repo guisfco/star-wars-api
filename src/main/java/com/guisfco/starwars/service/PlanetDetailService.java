@@ -1,7 +1,8 @@
 package com.guisfco.starwars.service;
 
-import com.guisfco.starwars.domain.swapi.response.PlanetDetail;
+import com.guisfco.starwars.domain.swapi.PlanetDetail;
 import com.guisfco.starwars.domain.swapi.response.PlanetListResponse;
+import com.guisfco.starwars.exception.PlanetDetailingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +34,13 @@ public class PlanetDetailService {
                 .build()
                 .toUri();
 
-        final PlanetListResponse response = restTemplate.getForObject(uri, PlanetListResponse.class);
+        PlanetListResponse response;
+
+        try {
+            response = restTemplate.getForObject(uri, PlanetListResponse.class);
+        } catch (Exception e) {
+            throw new PlanetDetailingException();
+        }
 
         if (isNull(response) || isEmpty(response.getResults())) {
             return null;

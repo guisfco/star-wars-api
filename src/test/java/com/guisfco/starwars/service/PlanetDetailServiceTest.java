@@ -1,7 +1,8 @@
 package com.guisfco.starwars.service;
 
-import com.guisfco.starwars.domain.swapi.response.PlanetDetail;
+import com.guisfco.starwars.domain.swapi.PlanetDetail;
 import com.guisfco.starwars.domain.swapi.response.PlanetListResponse;
+import com.guisfco.starwars.exception.PlanetDetailingException;
 import com.guisfco.starwars.fixture.PlanetDetailFixture;
 import com.guisfco.starwars.fixture.PlanetListResponseFixture;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -21,6 +23,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -53,6 +56,7 @@ class PlanetDetailServiceTest {
 
         assertNotNull(response);
         assertEquals(expectedPlanetDetail.getName(), response.getName());
+        verify(restTemplate).getForObject(any(URI.class), eq(PlanetListResponse.class));
     }
 
     @Test
@@ -64,5 +68,17 @@ class PlanetDetailServiceTest {
         final PlanetDetail response = service.getPlanetDetail(randomAlphabetic(5));
 
         assertNull(response);
+        verify(restTemplate).getForObject(any(URI.class), eq(PlanetListResponse.class));
+    }
+
+    @Test
+    @DisplayName("Must thrown an exception when planet detailing fails")
+    public void getPlanetDetailThrowException() {
+
+        when(restTemplate.getForObject(any(URI.class), eq(PlanetListResponse.class))).thenThrow(HttpClientErrorException.class);
+
+        assertThrows(PlanetDetailingException.class, () -> service.getPlanetDetail(randomAlphabetic(5)));
+
+        verify(restTemplate).getForObject(any(URI.class), eq(PlanetListResponse.class));
     }
 }

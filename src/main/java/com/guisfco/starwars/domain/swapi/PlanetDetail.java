@@ -1,4 +1,4 @@
-package com.guisfco.starwars.domain.swapi.response;
+package com.guisfco.starwars.domain.swapi;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.guisfco.starwars.fixture;
 
-import com.guisfco.starwars.domain.swapi.response.PlanetDetail;
+import com.guisfco.starwars.domain.swapi.PlanetDetail;
 
 import java.util.List;
 import java.util.stream.Collectors;

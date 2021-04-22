@@ -1,6 +1,7 @@
 package com.guisfco.starwars.domain.swapi.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.guisfco.starwars.domain.swapi.PlanetDetail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
